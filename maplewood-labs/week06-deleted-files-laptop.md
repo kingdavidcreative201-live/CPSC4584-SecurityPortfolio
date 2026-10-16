@@ -44,37 +44,6 @@ Maplewood Health System failed to collect a billing coordinator's laptop when te
 | `xxd .bashrc \| head -3` | Inspect the beginning of a file in hexadecimal and ASCII form for clues about its format. |
 | `find . -newer .bashrc -type f` | Identify regular files with modification times later than `.bashrc`. |
 
-### Actual Command Output and Observations
-
-**1. `stat .bashrc`**
-
-Output:
-[Paste the exact terminal output here.]
-
-Observation: The command reports file metadata and timestamps. Record the values actually shown in the practice environment.
-
-**2. `ls -lai`**
-
-Output:
-[Paste the exact terminal output here.]
-
-Observation: The listing shows directory entries and their inode numbers, including hidden files.
-
-**3. `xxd .bashrc | head -3`**
-
-Output:
-[Paste the exact terminal output here.]
-
-Observation: The hexadecimal and ASCII display allows inspection of the file's initial bytes and possible format indicators.
-
-**4. `find . -newer .bashrc -type f`**
-
-Output:
-[Paste the exact terminal output here.]
-
-Observation: The command lists files with modification times later than `.bashrc`; the results depend on the practice directory's contents and timestamps.
-
----
 
 ## Escalation Summary
 
