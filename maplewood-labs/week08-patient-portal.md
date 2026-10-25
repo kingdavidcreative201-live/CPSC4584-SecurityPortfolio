@@ -38,12 +38,37 @@ Three patients reported unexpected behavior on the Maplewood Health System patie
 
 ## HTTP Header Inspection Commands Used
 
-| Command | Purpose and Actual Observation |
-|---|---|
-| `curl -I https://example.com 2>/dev/null` | [Insert the exact output summary from Entry 1.] |
-| `curl -I https://example.com 2>/dev/null \| grep -iE "strict\|content-security\|x-frame\|x-content\|referrer"` | [Insert the exact output summary from Entry 2.] |
-| `curl -v --max-time 5 https://example.com 2>&1 \| grep -E "^[<>]" \| head -20` | [Insert the exact output summary from Entry 3.] |
-| `curl -IL --max-time 5 https://example.com 2>/dev/null \| grep -E "HTTP\|Location\|Set-Cookie"` | [Insert the exact output summary from Entry 4.] |
+Entry 1 — Retrieve Response Headers
+
+Command:
+
+curl -I https://example.com 2>/dev/null
+
+Observation: The server returned HTTP/2 200, indicating a successful response. The output included Content-Type, Server, Last-Modified, and caching-related headers.
+
+Entry 2 — Filter Security Headers
+
+Command:
+
+curl -I https://example.com 2>/dev/null | grep -iE "strict|content-security|x-frame|x-content|referrer"
+
+Observation: The command returned no matching lines. None of the five security-header patterns specified in the filter appeared in this response. This observation applies only to the tested response and does not establish the configuration of the Maplewood portal.
+
+Entry 3 — Inspect the HTTP Exchange
+
+Command:
+
+curl -v --max-time 5 https://example.com 2>&1 | grep -E "^[<>]" | head -20
+
+Observation: The output showed a GET request to the root path of example.com over HTTP/2 and a successful HTTP/2 200 response. The response included Content-Type, Server, and caching-related headers. No redirect or Set-Cookie header appeared in the displayed response lines.
+
+Entry 4 — Inspect Redirects and Cookies
+
+Command:
+
+curl -IL --max-time 5 https://example.com 2>/dev/null | grep -E "HTTP|Location|Set-Cookie"
+
+Observation: The output contained HTTP/2 200 and no Location or Set-Cookie lines. No redirect response or cookie-setting header was displayed for this request. This does not prove that other endpoints or requests never use redirects or cookies.
 
 ---
 
